@@ -1,40 +1,62 @@
-import { FontAwesome } from "@expo/vector-icons";
+import { FontAwesome5 } from "@expo/vector-icons"; // Usaremos FontAwesome 5, tiene buenos iconos para ti
 import { Tabs } from "expo-router";
 import React from "react";
 
-// Un componente pequeño y reutilizable para el icono. Es una buena práctica.
-// Recibe el nombre del icono y el color como propiedades.
+// Nuestro componente de icono reutilizable. No lo tocamos, funciona bien.
 function TabBarIcon(props: {
-  name: React.ComponentProps<typeof FontAwesome>["name"];
+  name: React.ComponentProps<typeof FontAwesome5>["name"];
   color: string;
 }) {
-  return <FontAwesome size={28} style={{ marginBottom: -3 }} {...props} />;
+  // He aumentado un poco el tamaño, a 24. 28 era un poco grande.
+  return <FontAwesome5 size={24} style={{ marginBottom: -3 }} {...props} />;
 }
 
 export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        // Aquí podemos configurar opciones para TODAS las pestañas a la vez.
-        // Por ejemplo, el color de la pestaña activa.
-        tabBarActiveTintColor: "blue",
+        tabBarActiveTintColor: "#007AFF", // Un azulito más moderno
       }}
     >
+      {/* 1. La pantalla de Proyectos. Es la primera. */}
+      {/* OJO: El `name` TIENE que coincidir con el nombre del archivo. */}
       <Tabs.Screen
-        name="index"
+        name="projects" // <- projects.tsx
         options={{
-          title: "Inicio",
-          // Usamos la opción `tabBarIcon` para renderizar nuestro icono.
-          // La propiedad `color` nos la da `Tabs` automáticamente.
-          tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
+          title: "Proyectos",
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name="drafting-compass" color={color} />
+          ),
+          headerShown: false, // Mantenemos el header custom que hicimos.
         }}
       />
+
+      {/* 2. Catálogo */}
       <Tabs.Screen
-        name="settings"
+        name="catalog" // <- catalog.tsx
         options={{
-          title: "Ajustes",
-          // Hacemos lo mismo para la otra pestaña, pero con un icono diferente.
-          tabBarIcon: ({ color }) => <TabBarIcon name="cog" color={color} />,
+          title: "Materiales",
+          tabBarIcon: ({ color }) => <TabBarIcon name="cubes" color={color} />,
+        }}
+      />
+
+      {/* 3. Proveedores */}
+      <Tabs.Screen
+        name="suppliers" // <- suppliers.tsx
+        options={{
+          title: "Proveedores",
+          tabBarIcon: ({ color }) => <TabBarIcon name="truck" color={color} />,
+        }}
+      />
+
+      {/* 4. Perfil */}
+      <Tabs.Screen
+        name="profile" // <- profile.tsx
+        options={{
+          title: "Perfil",
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name="user-circle" color={color} />
+          ),
         }}
       />
     </Tabs>
