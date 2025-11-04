@@ -2,7 +2,7 @@ import { ImageBackground } from "expo-image";
 import { StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-const coverImage = require("@/assets/images/coveram.jpg");
+const coverImage = require("@/assets/images/slide3.jpg");
 
 export default function HomeScreen() {
   return (
