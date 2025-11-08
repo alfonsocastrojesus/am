@@ -27,7 +27,7 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => (
             <TabBarIcon name="drafting-compass" color={color} />
           ),
-          headerShown: false, // Mantenemos el header custom que hicimos.
+          headerShown: true, // Mantenemos el header custom que hicimos.
         }}
       />
 
